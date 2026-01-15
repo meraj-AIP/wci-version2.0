@@ -4,7 +4,7 @@ import {
   CheckCircle, XCircle, Bot, Clock,
   Package, RefreshCw, TrendingUp,
   TrendingDown, Sparkles, CircleDot, FileText,
-  AlertTriangle, Building2
+  AlertTriangle, Building2, ChevronRight, ArrowLeft
 } from 'lucide-react'
 import { StatusBadge, Badge, Pagination } from '../ui'
 
@@ -22,6 +22,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedEntry, setSelectedEntry] = useState(null)
+  const [mobileDetailOpen, setMobileDetailOpen] = useState(false)
   const itemsPerPage = 15
 
   // Only include completed requests (not pending or human review) - this is history only
@@ -141,63 +142,64 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
   return (
     <div className="space-y-4 animate-slide-up">
       {/* Summary Cards - Compact */}
-      <div className="grid grid-cols-5 gap-3">
-        <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
+        <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
             <Zap size={14} className="text-cyan-600 dark:text-cyan-400" />
             <span className="text-[10px] text-slate-500 uppercase tracking-wider">Total</span>
           </div>
-          <span className="text-xl font-bold text-slate-900 dark:text-white">{totalDecisions}</span>
+          <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">{totalDecisions}</span>
         </div>
-        <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-500/10 dark:to-blue-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl p-3">
+        <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-500/10 dark:to-blue-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
             <Bot size={14} className="text-cyan-600 dark:text-cyan-400" />
             <span className="text-[10px] text-cyan-700 dark:text-cyan-300 uppercase tracking-wider">AI Auto</span>
           </div>
-          <span className="text-xl font-bold text-cyan-700 dark:text-cyan-300">{aiDecisions}</span>
+          <span className="text-lg sm:text-xl font-bold text-cyan-700 dark:text-cyan-300">{aiDecisions}</span>
         </div>
-        <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-500/10 dark:to-purple-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-3">
+        <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-500/10 dark:to-purple-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
             <Users size={14} className="text-violet-600 dark:text-violet-400" />
             <span className="text-[10px] text-violet-700 dark:text-violet-300 uppercase tracking-wider">Human</span>
           </div>
-          <span className="text-xl font-bold text-violet-700 dark:text-violet-300">{humanDecisions}</span>
+          <span className="text-lg sm:text-xl font-bold text-violet-700 dark:text-violet-300">{humanDecisions}</span>
         </div>
-        <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl p-3">
+        <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
             <CheckCircle size={14} className="text-emerald-600 dark:text-emerald-400" />
             <span className="text-[10px] text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">Synced</span>
           </div>
-          <span className="text-xl font-bold text-emerald-700 dark:text-emerald-300">{autoApproved}</span>
+          <span className="text-lg sm:text-xl font-bold text-emerald-700 dark:text-emerald-300">{autoApproved}</span>
         </div>
-        <div className="bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 rounded-xl p-3">
+        <div className="bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 rounded-xl p-2.5 sm:p-3 col-span-2 sm:col-span-1">
           <div className="flex items-center gap-2 mb-1">
             <XCircle size={14} className="text-rose-600 dark:text-rose-400" />
             <span className="text-[10px] text-rose-700 dark:text-rose-300 uppercase tracking-wider">Rejected</span>
           </div>
-          <span className="text-xl font-bold text-rose-700 dark:text-rose-300">{autoRejected}</span>
+          <span className="text-lg sm:text-xl font-bold text-rose-700 dark:text-rose-300">{autoRejected}</span>
         </div>
       </div>
 
       {/* Filter Tabs - Compact */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
         {[
-          { id: 'all', label: 'All Activity', icon: Activity, count: fullLog.length },
-          { id: 'ai', label: 'AI Decisions', icon: Bot, count: fullLog.filter(e => e.isAi).length },
-          { id: 'human', label: 'Human Decisions', icon: User, count: fullLog.filter(e => e.isHuman).length },
-          { id: 'rejected', label: 'Rejected', icon: XCircle, count: fullLog.filter(e => e.action === 'Rejected').length },
+          { id: 'all', label: 'All Activity', shortLabel: 'All', icon: Activity, count: fullLog.length },
+          { id: 'ai', label: 'AI Decisions', shortLabel: 'AI', icon: Bot, count: fullLog.filter(e => e.isAi).length },
+          { id: 'human', label: 'Human Decisions', shortLabel: 'Human', icon: User, count: fullLog.filter(e => e.isHuman).length },
+          { id: 'rejected', label: 'Rejected', shortLabel: 'Rejected', icon: XCircle, count: fullLog.filter(e => e.action === 'Rejected').length },
         ].map((filter) => (
           <button
             key={filter.id}
             onClick={() => handleFilterChange(filter.id)}
-            className={`px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-all ${
+            className={`px-2 sm:px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1 sm:gap-1.5 transition-all flex-shrink-0 ${
               activeFilter === filter.id
                 ? 'bg-cyan-100 dark:bg-cyan-500/20 border-cyan-300 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-400'
                 : 'bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
             }`}
           >
             <filter.icon size={12} />
-            {filter.label}
+            <span className="hidden sm:inline">{filter.label}</span>
+            <span className="sm:hidden">{filter.shortLabel}</span>
             <span className={`px-1.5 py-0.5 rounded text-[10px] ${
               activeFilter === filter.id
                 ? 'bg-cyan-200 dark:bg-cyan-500/30'
@@ -209,10 +211,10 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
         ))}
       </div>
 
-      {/* Main Content - 30/70 Split */}
-      <div className="grid grid-cols-10 gap-4 h-[calc(100vh-320px)] min-h-[500px]">
-        {/* Left Panel - Activity List (30%) */}
-        <div className="col-span-3 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col">
+      {/* Main Content - 30/70 Split on Desktop, Full width list on Mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 h-auto lg:h-[calc(100vh-320px)] lg:min-h-[500px]">
+        {/* Left Panel - Activity List (30% on desktop, full on mobile) */}
+        <div className={`lg:col-span-3 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col ${mobileDetailOpen ? 'hidden lg:flex' : 'flex'}`}>
           {/* List Header */}
           <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
             <div className="flex items-center justify-between">
@@ -228,7 +230,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
           </div>
 
           {/* Scrollable List */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto max-h-[400px] lg:max-h-none">
             {paginatedLog.map((entry, idx) => {
               const isSelected = currentSelection?.id === entry.id
               const actionDisplay = entry.type === 'action' ? getActionDisplayStatus(entry) : null
@@ -236,7 +238,10 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
               return (
                 <div
                   key={entry.id}
-                  onClick={() => setSelectedEntry(entry)}
+                  onClick={() => {
+                    setSelectedEntry(entry)
+                    setMobileDetailOpen(true)
+                  }}
                   className={`px-3 py-3 border-b border-slate-100 dark:border-slate-800/50 cursor-pointer transition-all ${
                     isSelected
                       ? 'bg-cyan-50 dark:bg-cyan-500/10 border-l-2 border-l-cyan-500'
@@ -276,18 +281,19 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                         <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-mono ${
                           entry.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400' : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                         }`}>
-                          <span className="text-slate-400 font-sans text-[10px]">Price</span>
+                          <span className="text-slate-400 font-sans text-[10px] hidden sm:inline">Price</span>
                           {entry.priceChange > 0 ? '+' : ''}{entry.priceChange}%
                         </div>
                         <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-mono ${
                           entry.marginImpact < 0 ? 'bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400' : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                         }`}>
-                          <span className="text-slate-400 font-sans text-[10px]">Margin</span>
+                          <span className="text-slate-400 font-sans text-[10px] hidden sm:inline">Margin</span>
                           {entry.marginImpact > 0 ? '+' : ''}{entry.marginImpact}%
                         </div>
-                        <span className="text-xs text-slate-400 ml-auto">
+                        <span className="text-xs text-slate-400 ml-auto hidden sm:inline">
                           {entry.timestamp.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                         </span>
+                        <ChevronRight size={16} className="text-slate-400 lg:hidden ml-auto sm:ml-0" />
                       </div>
                     </div>
                   ) : (
@@ -308,7 +314,8 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                         <span className="text-sm text-slate-700 dark:text-slate-300 block truncate">{entry.actionName}</span>
                         <span className="text-xs text-slate-400 font-mono">{entry.requestId}</span>
                       </div>
-                      <Badge variant={actionDisplay.variant} className="text-xs flex-shrink-0">{actionDisplay.label}</Badge>
+                      <Badge variant={actionDisplay.variant} className="text-xs flex-shrink-0 hidden sm:inline-flex">{actionDisplay.label}</Badge>
+                      <ChevronRight size={16} className="text-slate-400 lg:hidden flex-shrink-0" />
                     </div>
                   )}
                 </div>
@@ -349,50 +356,59 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
           </div>
         </div>
 
-        {/* Right Panel - Detail View (70%) */}
-        <div className="col-span-7 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col">
+        {/* Right Panel - Detail View (70% on desktop, full on mobile when open) */}
+        <div className={`lg:col-span-7 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col ${mobileDetailOpen ? 'flex' : 'hidden lg:flex'}`}>
           {currentSelection ? (
             <>
               {/* Detail Header */}
-              <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/50 dark:to-slate-900/50">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${
+              <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/50 dark:to-slate-900/50">
+                {/* Mobile Back Button */}
+                <button
+                  onClick={() => setMobileDetailOpen(false)}
+                  className="lg:hidden flex items-center gap-2 text-slate-600 dark:text-slate-400 mb-3 text-sm"
+                >
+                  <ArrowLeft size={16} />
+                  Back to list
+                </button>
+                <div className="flex items-start justify-between flex-wrap gap-3">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
                       currentSelection.isAi
                         ? 'bg-gradient-to-br from-cyan-400 to-blue-500 shadow-cyan-500/20'
                         : 'bg-gradient-to-br from-violet-400 to-purple-500 shadow-violet-500/20'
                     }`}>
                       {currentSelection.isAi ? (
-                        <Bot size={24} className="text-white" />
+                        <Bot size={20} className="text-white sm:w-6 sm:h-6" />
                       ) : (
-                        <User size={24} className="text-white" />
+                        <User size={20} className="text-white sm:w-6 sm:h-6" />
                       )}
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-lg font-semibold text-cyan-600 dark:text-cyan-400">{currentSelection.requestId}</span>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-mono text-base sm:text-lg font-semibold text-cyan-600 dark:text-cyan-400">{currentSelection.requestId}</span>
                         {currentSelection.type === 'decision' && currentSelection.action === 'Synced to Epicor' && (
                           <div className="flex items-center gap-1 px-2 py-0.5 bg-emerald-100 dark:bg-emerald-500/20 rounded-full">
                             <RefreshCw size={10} className="text-emerald-600 dark:text-emerald-400" />
-                            <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-300">Synced to Epicor</span>
+                            <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-300 hidden sm:inline">Synced to Epicor</span>
+                            <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-300 sm:hidden">Synced</span>
                           </div>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Building2 size={14} className="text-slate-400" />
-                        <span className="text-sm text-slate-700 dark:text-slate-300">{currentSelection.vendor}</span>
+                      <div className="flex items-center gap-1.5 sm:gap-2 mt-1 flex-wrap">
+                        <Building2 size={14} className="text-slate-400 hidden sm:block" />
+                        <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 truncate max-w-[150px] sm:max-w-none">{currentSelection.vendor}</span>
                         <Badge variant={currentSelection.vendorCategory === 'Strategic' ? 'purple' : currentSelection.vendorCategory === 'Unknown' ? 'danger' : 'neutral'}>
                           {getCategoryLabel(currentSelection.vendorCategory)}
                         </Badge>
                         {currentSelection.vendorTrustScore && (
-                          <span className="text-xs text-slate-500">Trust: {currentSelection.vendorTrustScore}/100</span>
+                          <span className="text-xs text-slate-500 hidden md:inline">Trust: {currentSelection.vendorTrustScore}/100</span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
+                  <div className="flex flex-col items-end gap-2 flex-shrink-0">
                     <StatusBadge status={currentSelection.status} />
-                    <span className="text-xs text-slate-500">
+                    <span className="text-[10px] sm:text-xs text-slate-500">
                       {currentSelection.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
@@ -400,12 +416,12 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
               </div>
 
               {/* Detail Content - Scrollable */}
-              <div className="flex-1 overflow-y-auto p-5 space-y-5">
+              <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-4 sm:space-y-5">
                 {/* Action Context (if action entry) */}
                 {currentSelection.type === 'action' && (
-                  <div className="flex items-center justify-between p-4 bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-4 bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <Activity size={18} className="text-cyan-600 dark:text-cyan-400" />
+                      <Activity size={18} className="text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
                       <div>
                         <span className="text-sm text-cyan-700 dark:text-cyan-300">Action:</span>
                         <span className="ml-2 font-semibold text-cyan-800 dark:text-cyan-200">{currentSelection.actionName}</span>
@@ -418,46 +434,46 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                 )}
 
                 {/* Key Metrics */}
-                <div className="grid grid-cols-4 gap-3">
-                  <div className={`rounded-xl p-4 ${currentSelection.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20' : 'bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20'}`}>
-                    <div className="flex items-center gap-2 mb-2">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+                  <div className={`rounded-xl p-3 sm:p-4 ${currentSelection.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20' : 'bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20'}`}>
+                    <div className="flex items-center gap-2 mb-1 sm:mb-2">
                       {currentSelection.priceChange > 0 ? (
-                        <TrendingUp size={16} className="text-rose-500" />
+                        <TrendingUp size={14} className="text-rose-500 sm:w-4 sm:h-4" />
                       ) : (
-                        <TrendingDown size={16} className="text-emerald-500" />
+                        <TrendingDown size={14} className="text-emerald-500 sm:w-4 sm:h-4" />
                       )}
-                      <span className="text-xs text-slate-500 uppercase tracking-wider">Price Change</span>
+                      <span className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider">Price</span>
                     </div>
-                    <span className={`text-2xl font-mono font-bold ${currentSelection.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                    <span className={`text-xl sm:text-2xl font-mono font-bold ${currentSelection.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                       {currentSelection.priceChange > 0 ? '+' : ''}{currentSelection.priceChange}%
                     </span>
                   </div>
-                  <div className={`rounded-xl p-4 ${currentSelection.marginImpact < 0 ? 'bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20' : 'bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20'}`}>
-                    <div className="flex items-center gap-2 mb-2">
+                  <div className={`rounded-xl p-3 sm:p-4 ${currentSelection.marginImpact < 0 ? 'bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20' : 'bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20'}`}>
+                    <div className="flex items-center gap-2 mb-1 sm:mb-2">
                       {currentSelection.marginImpact < 0 ? (
-                        <TrendingDown size={16} className="text-rose-500" />
+                        <TrendingDown size={14} className="text-rose-500 sm:w-4 sm:h-4" />
                       ) : (
-                        <TrendingUp size={16} className="text-emerald-500" />
+                        <TrendingUp size={14} className="text-emerald-500 sm:w-4 sm:h-4" />
                       )}
-                      <span className="text-xs text-slate-500 uppercase tracking-wider">Margin Impact</span>
+                      <span className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider">Margin</span>
                     </div>
-                    <span className={`text-2xl font-mono font-bold ${currentSelection.marginImpact < 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                    <span className={`text-xl sm:text-2xl font-mono font-bold ${currentSelection.marginImpact < 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                       {currentSelection.marginImpact > 0 ? '+' : ''}{currentSelection.marginImpact}%
                     </span>
                   </div>
-                  <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Sparkles size={16} className="text-violet-500" />
-                      <span className="text-xs text-slate-500 uppercase tracking-wider">Confidence</span>
+                  <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-3 sm:p-4 border border-slate-200 dark:border-slate-700">
+                    <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                      <Sparkles size={14} className="text-violet-500 sm:w-4 sm:h-4" />
+                      <span className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider">Confidence</span>
                     </div>
-                    <span className="text-2xl font-bold text-slate-900 dark:text-white">{currentSelection.confidence}%</span>
+                    <span className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{currentSelection.confidence}%</span>
                   </div>
-                  <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
-                    <div className="flex items-center gap-2 mb-2">
-                      {currentSelection.isAi ? <Bot size={16} className="text-cyan-500" /> : <User size={16} className="text-violet-500" />}
-                      <span className="text-xs text-slate-500 uppercase tracking-wider">Decision By</span>
+                  <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-3 sm:p-4 border border-slate-200 dark:border-slate-700">
+                    <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                      {currentSelection.isAi ? <Bot size={14} className="text-cyan-500 sm:w-4 sm:h-4" /> : <User size={14} className="text-violet-500 sm:w-4 sm:h-4" />}
+                      <span className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider">Decision</span>
                     </div>
-                    <span className="text-lg font-semibold text-slate-900 dark:text-white">
+                    <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white truncate block">
                       {currentSelection.isAi ? 'AI Agent' : currentSelection.assignedReviewer || 'Human'}
                     </span>
                   </div>
@@ -526,31 +542,31 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                 {/* BOM Analysis */}
                 {currentSelection.bomAnalysis && (
                   <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                    <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                    <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2 flex-wrap">
                       <Package size={16} className="text-cyan-600 dark:text-cyan-400" />
-                      <h4 className="font-medium text-slate-800 dark:text-slate-200">BOM Impact Analysis</h4>
-                      <span className="ml-auto text-xs text-slate-500">{currentSelection.bomAnalysis.summary.totalProductsAffected} products affected</span>
+                      <h4 className="font-medium text-sm sm:text-base text-slate-800 dark:text-slate-200">BOM Impact Analysis</h4>
+                      <span className="ml-auto text-xs text-slate-500">{currentSelection.bomAnalysis.summary.totalProductsAffected} products</span>
                     </div>
-                    <div className="p-4 grid grid-cols-4 gap-3">
-                      <div className="bg-slate-100 dark:bg-slate-800/30 rounded-lg p-3">
-                        <span className="text-xs text-slate-500 block">Products</span>
-                        <span className="text-xl font-semibold text-slate-900 dark:text-white">{currentSelection.bomAnalysis.summary.totalProductsAffected}</span>
+                    <div className="p-3 sm:p-4 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+                      <div className="bg-slate-100 dark:bg-slate-800/30 rounded-lg p-2.5 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Products</span>
+                        <span className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white">{currentSelection.bomAnalysis.summary.totalProductsAffected}</span>
                       </div>
-                      <div className={`rounded-lg p-3 ${currentSelection.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
-                        <span className="text-xs text-slate-500 block">Annual Impact</span>
-                        <span className={`text-xl font-semibold font-mono ${currentSelection.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                      <div className={`rounded-lg p-2.5 sm:p-3 ${currentSelection.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Annual Impact</span>
+                        <span className={`text-base sm:text-xl font-semibold font-mono ${currentSelection.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                           {currentSelection.priceChange > 0 ? '+' : '-'}${Math.abs(parseFloat(currentSelection.bomAnalysis.summary.totalAnnualImpact)).toLocaleString()}
                         </span>
                       </div>
-                      <div className="bg-slate-100 dark:bg-slate-800/30 rounded-lg p-3">
-                        <span className="text-xs text-slate-500 block">Avg/Product</span>
-                        <span className="text-xl font-semibold font-mono text-slate-900 dark:text-white">
+                      <div className="bg-slate-100 dark:bg-slate-800/30 rounded-lg p-2.5 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Avg/Product</span>
+                        <span className="text-base sm:text-xl font-semibold font-mono text-slate-900 dark:text-white">
                           ${parseFloat(currentSelection.bomAnalysis.summary.avgImpactPerProduct).toLocaleString()}
                         </span>
                       </div>
-                      <div className="bg-amber-50 dark:bg-amber-500/10 rounded-lg p-3">
-                        <span className="text-xs text-amber-600 dark:text-amber-400 block">Highest Impact</span>
-                        <span className="text-lg font-mono text-amber-700 dark:text-amber-300">{currentSelection.bomAnalysis.summary.highestImpactProduct}</span>
+                      <div className="bg-amber-50 dark:bg-amber-500/10 rounded-lg p-2.5 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-amber-600 dark:text-amber-400 block">Highest Impact</span>
+                        <span className="text-sm sm:text-lg font-mono text-amber-700 dark:text-amber-300 truncate block">{currentSelection.bomAnalysis.summary.highestImpactProduct}</span>
                       </div>
                     </div>
 

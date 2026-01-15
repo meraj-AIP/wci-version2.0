@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: WCI Co-pilot Dashboard v2.0\n\nFeatures:\n- Dashboard with KPIs, agent activity, and price change requests table\n- Decisions & Actions tab with activity log and filter tabs\n- Human-in-the-Loop \\(HITL\\) tab with reason-based filtering\n- HITL reasons: Unknown Sender, Margin Breach, Missing Info\n- Dark/Light mode support\n- React Router for URL-based navigation\n- Responsive design with Tailwind CSS\n- Vercel deployment configuration\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import {
   Shield, User, CheckCircle, Eye, Check, X, Loader2,
   AlertTriangle, TrendingDown, UserX, Package, DollarSign, AlertOctagon,
   Mail, Clock, RefreshCw, Send, FileText, CheckSquare, Square, Copy,
-  AlertCircle, Info
+  AlertCircle, Info, ArrowLeft, ChevronRight
 } from 'lucide-react'
 import { Badge, SLATimer } from '../ui'
 import { MARGIN_EROSION_THRESHOLD } from '../../data/mockData'
@@ -110,87 +110,88 @@ WCI Co-Pilot Automated System`
 
   return (
     <div
-      className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden animate-slide-up"
+        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-2xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-violet-100 dark:bg-violet-500/20 rounded-lg">
-              <Mail size={20} className="text-violet-600 dark:text-violet-400" />
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="p-1.5 sm:p-2 bg-violet-100 dark:bg-violet-500/20 rounded-lg">
+              <Mail size={18} className="text-violet-600 dark:text-violet-400 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h3 className="font-semibold text-slate-800 dark:text-slate-200">Draft Email to Vendor</h3>
-              <p className="text-xs text-slate-500">Review and send request for missing information</p>
+              <h3 className="font-semibold text-sm sm:text-base text-slate-800 dark:text-slate-200">Draft Email to Vendor</h3>
+              <p className="text-[10px] sm:text-xs text-slate-500">Review and send request for missing info</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-            <X size={20} className="text-slate-500" />
+          <button onClick={onClose} className="p-1.5 sm:p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+            <X size={18} className="text-slate-500 sm:w-5 sm:h-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-4 overflow-y-auto max-h-[calc(85vh-180px)]">
-          <div className="bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 rounded-xl p-4">
+        <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 overflow-y-auto max-h-[calc(90vh-180px)] sm:max-h-[calc(85vh-180px)]">
+          <div className="bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 rounded-xl p-3 sm:p-4">
             <div className="flex items-center gap-2 mb-2">
-              <AlertTriangle size={16} className="text-rose-600 dark:text-rose-400" />
-              <span className="font-medium text-rose-800 dark:text-rose-300">Missing Information ({missingItems.length} items)</span>
+              <AlertTriangle size={14} className="text-rose-600 dark:text-rose-400 sm:w-4 sm:h-4" />
+              <span className="font-medium text-xs sm:text-sm text-rose-800 dark:text-rose-300">Missing Information ({missingItems.length} items)</span>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {missingItems.map((item) => (
-                <span key={item.id} className="px-2 py-1 bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 text-xs rounded-lg">
+                <span key={item.id} className="px-2 py-1 bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 text-[10px] sm:text-xs rounded-lg">
                   {item.label}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             <div>
-              <label className="text-xs text-slate-500 uppercase tracking-wider block mb-1">To</label>
-              <div className="px-3 py-2 bg-slate-100 dark:bg-slate-800/50 rounded-lg text-sm text-slate-700 dark:text-slate-300 font-mono">
+              <label className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider block mb-1">To</label>
+              <div className="px-2.5 sm:px-3 py-1.5 sm:py-2 bg-slate-100 dark:bg-slate-800/50 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-mono truncate">
                 {vendorEmail}
               </div>
             </div>
             <div>
-              <label className="text-xs text-slate-500 uppercase tracking-wider block mb-1">Subject</label>
-              <div className="px-3 py-2 bg-slate-100 dark:bg-slate-800/50 rounded-lg text-sm text-slate-700 dark:text-slate-300">
+              <label className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider block mb-1">Subject</label>
+              <div className="px-2.5 sm:px-3 py-1.5 sm:py-2 bg-slate-100 dark:bg-slate-800/50 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-300">
                 {emailSubject}
               </div>
             </div>
             <div>
-              <label className="text-xs text-slate-500 uppercase tracking-wider block mb-1">Message</label>
-              <div className="px-4 py-3 bg-slate-100 dark:bg-slate-800/50 rounded-lg text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap font-mono leading-relaxed max-h-64 overflow-y-auto">
+              <label className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider block mb-1">Message</label>
+              <div className="px-3 sm:px-4 py-2 sm:py-3 bg-slate-100 dark:bg-slate-800/50 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap font-mono leading-relaxed max-h-48 sm:max-h-64 overflow-y-auto">
                 {emailBody}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0">
           <button
             onClick={() => navigator.clipboard.writeText(`Subject: ${emailSubject}\n\n${emailBody}`)}
-            className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
+            className="px-3 sm:px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-colors"
           >
             <Copy size={14} />
-            Copy to Clipboard
+            <span className="hidden sm:inline">Copy to Clipboard</span>
+            <span className="sm:hidden">Copy</span>
           </button>
-          <div className="flex gap-3">
-            <button onClick={onClose} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+          <div className="flex gap-2 sm:gap-3">
+            <button onClick={onClose} className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs sm:text-sm font-medium transition-colors">
               Cancel
             </button>
             <button
               onClick={onSend}
               disabled={isSending || isSent}
-              className={`px-6 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all ${
+              className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all ${
                 isSent ? 'bg-emerald-500 text-white' : 'bg-violet-600 hover:bg-violet-700 text-white'
               } disabled:opacity-50`}
             >
-              {isSending ? <><Loader2 size={16} className="animate-spin" /> Sending...</> :
-               isSent ? <><Check size={16} /> Sent Successfully!</> :
-               <><Send size={16} /> Review & Send</>}
+              {isSending ? <><Loader2 size={14} className="animate-spin" /> Sending...</> :
+               isSent ? <><Check size={14} /> Sent!</> :
+               <><Send size={14} /> Send</>}
             </button>
           </div>
         </div>
@@ -230,38 +231,38 @@ const RejectionModal = ({ isOpen, onClose, onConfirm, isProcessing, requestId })
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50 p-4" onClick={handleClose}>
-      <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-700" onClick={(e) => e.stopPropagation()}>
-        <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-500/20 flex items-center justify-center">
-              <X size={20} className="text-rose-600 dark:text-rose-400" />
+    <div className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4" onClick={handleClose}>
+      <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-md max-h-[90vh] sm:max-h-[85vh] overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700" onClick={(e) => e.stopPropagation()}>
+        <div className="px-4 sm:px-5 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-100 dark:bg-rose-500/20 flex items-center justify-center flex-shrink-0">
+              <X size={18} className="text-rose-600 dark:text-rose-400 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <h3 className="font-semibold text-slate-800 dark:text-slate-200">Reject Request</h3>
-              <p className="text-xs text-slate-500">{requestId}</p>
+            <div className="min-w-0">
+              <h3 className="font-semibold text-sm sm:text-base text-slate-800 dark:text-slate-200">Reject Request</h3>
+              <p className="text-[10px] sm:text-xs text-slate-500 truncate">{requestId}</p>
             </div>
           </div>
-          <button onClick={handleClose} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-            <X size={18} className="text-slate-400" />
+          <button onClick={handleClose} className="p-1.5 sm:p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+            <X size={16} className="text-slate-400 sm:w-[18px] sm:h-[18px]" />
           </button>
         </div>
 
-        <div className="p-5 space-y-4">
+        <div className="p-4 sm:p-5 space-y-3 sm:space-y-4 overflow-y-auto max-h-[calc(90vh-160px)] sm:max-h-[calc(85vh-160px)]">
           <div>
-            <label className="text-sm font-medium text-slate-700 dark:text-slate-300 block mb-2">Select rejection reason</label>
-            <div className="space-y-2">
+            <label className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 block mb-2">Select rejection reason</label>
+            <div className="space-y-1.5 sm:space-y-2">
               {predefinedReasons.map((r) => (
                 <label
                   key={r}
-                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
+                  className={`flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-all ${
                     selectedReason === r
                       ? 'border-rose-300 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10'
                       : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                   }`}
                 >
-                  <input type="radio" name="rejectionReason" value={r} checked={selectedReason === r} onChange={(e) => setSelectedReason(e.target.value)} className="w-4 h-4 text-rose-600 focus:ring-rose-500" />
-                  <span className="text-sm text-slate-700 dark:text-slate-300">{r}</span>
+                  <input type="radio" name="rejectionReason" value={r} checked={selectedReason === r} onChange={(e) => setSelectedReason(e.target.value)} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-600 focus:ring-rose-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{r}</span>
                 </label>
               ))}
             </div>
@@ -269,28 +270,28 @@ const RejectionModal = ({ isOpen, onClose, onConfirm, isProcessing, requestId })
 
           {selectedReason === 'Other' && (
             <div>
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300 block mb-2">Specify reason</label>
+              <label className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 block mb-2">Specify reason</label>
               <textarea
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="Enter rejection reason..."
                 rows={3}
-                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all resize-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all resize-none"
               />
             </div>
           )}
         </div>
 
-        <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-3">
-          <button onClick={handleClose} className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+        <div className="px-4 sm:px-5 py-3 sm:py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2 sm:gap-3">
+          <button onClick={handleClose} className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={!selectedReason || (selectedReason === 'Other' && !reason.trim()) || isProcessing}
-            className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-3 sm:px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-medium rounded-lg flex items-center gap-1.5 sm:gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isProcessing ? <><Loader2 size={16} className="animate-spin" /> Rejecting...</> : <><X size={16} /> Confirm Rejection</>}
+            {isProcessing ? <><Loader2 size={14} className="animate-spin" /> Rejecting...</> : <><X size={14} /> <span className="hidden sm:inline">Confirm</span> Reject</>}
           </button>
         </div>
       </div>
@@ -310,6 +311,7 @@ const HITLTab = ({
   const [emailSent, setEmailSent] = useState(false)
   const [showRejectionModal, setShowRejectionModal] = useState(false)
   const [rejectionReasons, setRejectionReasons] = useState({})
+  const [mobileDetailOpen, setMobileDetailOpen] = useState(false)
 
   // Generate mock email data status for the selected request
   const getEmailDataStatus = (request) => {
@@ -387,27 +389,27 @@ const HITLTab = ({
   }
 
   return (
-    <div className="space-y-6 animate-slide-up">
+    <div className="space-y-4 sm:space-y-6 animate-slide-up">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-gradient-to-br from-rose-500 to-orange-500 rounded-xl shadow-lg shadow-rose-500/20">
-            <Shield size={22} className="text-white" />
+          <div className="p-2 sm:p-2.5 bg-gradient-to-br from-rose-500 to-orange-500 rounded-xl shadow-lg shadow-rose-500/20">
+            <Shield size={20} className="text-white sm:w-[22px] sm:h-[22px]" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Human Review Queue</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Requests requiring manual approval</p>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100">Human Review Queue</h2>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Requests requiring approval</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 bg-rose-100 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/30 rounded-xl">
-          <AlertCircle size={18} className="text-rose-600 dark:text-rose-400" />
-          <span className="text-2xl font-bold text-rose-600 dark:text-rose-400">{hitlRequests.length}</span>
-          <span className="text-sm text-rose-600 dark:text-rose-400">Pending</span>
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-rose-100 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/30 rounded-xl self-start sm:self-auto">
+          <AlertCircle size={16} className="text-rose-600 dark:text-rose-400 sm:w-[18px] sm:h-[18px]" />
+          <span className="text-xl sm:text-2xl font-bold text-rose-600 dark:text-rose-400">{hitlRequests.length}</span>
+          <span className="text-xs sm:text-sm text-rose-600 dark:text-rose-400">Pending</span>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
         {filterTabs.map((tab) => {
           const TabIcon = tab.icon
           const isActive = activeFilter === tab.id
@@ -418,18 +420,27 @@ const HITLTab = ({
             orange: isActive ? 'bg-orange-100 dark:bg-orange-500/20 border-orange-300 dark:border-orange-500/30 text-orange-700 dark:text-orange-400' : '',
             violet: isActive ? 'bg-violet-100 dark:bg-violet-500/20 border-violet-300 dark:border-violet-500/30 text-violet-700 dark:text-violet-400' : '',
           }
+          // Short labels for mobile
+          const shortLabels = {
+            'all': 'All',
+            'unknown': 'Unknown',
+            'margin': 'Margin',
+            'missing': 'Missing',
+            'other': 'Other'
+          }
           return (
             <button
               key={tab.id}
               onClick={() => setActiveFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-all ${
+              className={`px-2 sm:px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1 sm:gap-1.5 transition-all flex-shrink-0 ${
                 isActive
                   ? colorStyles[tab.color]
                   : 'bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600'
               }`}
             >
-              <TabIcon size={14} />
-              {tab.label}
+              <TabIcon size={12} className="sm:w-[14px] sm:h-[14px]" />
+              <span className="hidden sm:inline">{tab.label}</span>
+              <span className="sm:hidden">{shortLabels[tab.id]}</span>
               <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-semibold ${
                 isActive ? 'bg-white/50 dark:bg-black/20' : 'bg-slate-100 dark:bg-slate-800'
               }`}>
@@ -441,17 +452,17 @@ const HITLTab = ({
       </div>
 
       {/* Main Grid */}
-      <div className="grid lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-6">
         {/* Request Cards List */}
-        <div className="lg:col-span-2 space-y-3">
+        <div className={`lg:col-span-2 space-y-3 ${mobileDetailOpen ? 'hidden lg:block' : 'block'}`}>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+            <span className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">
               {activeFilter === 'all' ? 'All Requests' : filterTabs.find(t => t.id === activeFilter)?.label}
             </span>
-            <span className="text-xs text-slate-500">Sorted by SLA urgency</span>
+            <span className="text-[10px] sm:text-xs text-slate-500">Sorted by SLA urgency</span>
           </div>
 
-          <div className="space-y-3 max-h-[calc(100vh-280px)] overflow-y-auto pr-1">
+          <div className="space-y-3 max-h-[calc(100vh-340px)] lg:max-h-[calc(100vh-280px)] overflow-y-auto pr-1">
             {sortedRequests.map((request) => {
               const hitlReason = getHITLReason(request)
               const ReasonIcon = hitlReason.icon
@@ -495,8 +506,11 @@ const HITLTab = ({
               return (
                 <div
                   key={request.id}
-                  onClick={() => setSelectedRequest(request)}
-                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                  onClick={() => {
+                    setSelectedRequest(request)
+                    setMobileDetailOpen(true)
+                  }}
+                  className={`p-3 sm:p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     isSelected
                       ? `${colors.bg} ${colors.selectedBorder} shadow-lg`
                       : `bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md`
@@ -523,20 +537,21 @@ const HITLTab = ({
                   </div>
 
                   {/* Metrics */}
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg">
-                      <span className="text-[10px] uppercase text-slate-500 font-medium">Price</span>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg">
+                      <span className="text-[10px] uppercase text-slate-500 font-medium hidden sm:inline">Price</span>
                       <span className={`text-xs font-mono font-bold ${request.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                         {request.priceChange > 0 ? '+' : ''}{request.priceChange}%
                       </span>
                     </div>
-                    <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg">
-                      <span className="text-[10px] uppercase text-slate-500 font-medium">Margin</span>
+                    <div className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg">
+                      <span className="text-[10px] uppercase text-slate-500 font-medium hidden sm:inline">Margin</span>
                       <span className={`text-xs font-mono font-bold ${request.marginImpact < 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                         {request.marginImpact > 0 ? '+' : ''}{request.marginImpact}%
                       </span>
                     </div>
-                    <span className="text-xs text-slate-500 ml-auto">{request.confidence}% conf.</span>
+                    <span className="text-xs text-slate-500 ml-auto hidden sm:inline">{request.confidence}% conf.</span>
+                    <ChevronRight size={16} className="text-slate-400 lg:hidden ml-auto sm:ml-0" />
                   </div>
                 </div>
               )
@@ -567,11 +582,20 @@ const HITLTab = ({
         </div>
 
         {/* Detail Panel */}
-        <div className="lg:col-span-3 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+        <div className={`lg:col-span-3 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden ${mobileDetailOpen ? 'block' : 'hidden lg:block'}`}>
           {selectedRequest ? (
             <>
               {/* Detail Header */}
-              <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/50 dark:to-slate-900/50">
+              <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-slate-50 to-white dark:from-slate-800/50 dark:to-slate-900/50">
+                {/* Mobile Back Button */}
+                <button
+                  onClick={() => setMobileDetailOpen(false)}
+                  className="lg:hidden flex items-center gap-2 text-slate-600 dark:text-slate-400 mb-3 text-sm"
+                >
+                  <ArrowLeft size={16} />
+                  Back to list
+                </button>
+
                 {/* HITL Reason Alert */}
                 {(() => {
                   const hitlReason = getHITLReason(selectedRequest)
@@ -583,54 +607,54 @@ const HITLTab = ({
                     violet: 'bg-violet-100 dark:bg-violet-500/20 border-violet-300 dark:border-violet-500/30 text-violet-800 dark:text-violet-200'
                   }
                   return (
-                    <div className={`flex items-center gap-3 p-3 rounded-xl border mb-4 ${colorClasses[hitlReason.color]}`}>
-                      <ReasonIcon size={20} />
-                      <div>
-                        <span className="font-semibold text-sm">{hitlReason.title}</span>
-                        <p className="text-xs opacity-80">{hitlReason.description}</p>
+                    <div className={`flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border mb-3 sm:mb-4 ${colorClasses[hitlReason.color]}`}>
+                      <ReasonIcon size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
+                      <div className="min-w-0">
+                        <span className="font-semibold text-xs sm:text-sm">{hitlReason.title}</span>
+                        <p className="text-[10px] sm:text-xs opacity-80 truncate sm:whitespace-normal">{hitlReason.description}</p>
                       </div>
                     </div>
                   )
                 })()}
 
-                <div className="flex items-start justify-between">
-                  <div>
-                    <span className="font-mono text-lg font-bold text-cyan-600 dark:text-cyan-400">{selectedRequest.id}</span>
-                    <p className="text-slate-700 dark:text-slate-300">{selectedRequest.vendor}</p>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <span className="font-mono text-base sm:text-lg font-bold text-cyan-600 dark:text-cyan-400">{selectedRequest.id}</span>
+                    <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 truncate">{selectedRequest.vendor}</p>
                   </div>
                   <SLATimer hours={selectedRequest.slaHours} />
                 </div>
               </div>
 
               {/* Detail Content */}
-              <div className="p-5 space-y-5 max-h-[calc(100vh-380px)] overflow-y-auto">
+              <div className="p-3 sm:p-5 space-y-4 sm:space-y-5 max-h-[calc(100vh-420px)] lg:max-h-[calc(100vh-380px)] overflow-y-auto">
                 {/* Unknown Vendor Details */}
                 {selectedRequest.vendorCategory === 'Unknown' && selectedRequest.unknownVendorDetails && (
-                  <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-4">
+                  <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-3 sm:p-4">
                     <div className="flex items-center gap-2 mb-3">
                       <AlertOctagon size={16} className="text-amber-600 dark:text-amber-400" />
-                      <h4 className="font-medium text-amber-800 dark:text-amber-300">Vendor Risk Assessment</h4>
+                      <h4 className="font-medium text-sm sm:text-base text-amber-800 dark:text-amber-300">Vendor Risk Assessment</h4>
                     </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-white dark:bg-slate-800/50 rounded-lg p-3">
-                        <span className="text-xs text-slate-500 block">Risk Score</span>
-                        <span className="text-xl font-bold text-rose-600 dark:text-rose-400">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                      <div className="bg-white dark:bg-slate-800/50 rounded-lg p-2.5 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Risk Score</span>
+                        <span className="text-lg sm:text-xl font-bold text-rose-600 dark:text-rose-400">
                           {selectedRequest.unknownVendorDetails.riskScore}/100
                         </span>
                       </div>
-                      <div className="bg-white dark:bg-slate-800/50 rounded-lg p-3">
-                        <span className="text-xs text-slate-500 block">Previous Requests</span>
-                        <span className="text-xl font-bold text-slate-900 dark:text-white">
+                      <div className="bg-white dark:bg-slate-800/50 rounded-lg p-2.5 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Previous Requests</span>
+                        <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                           {selectedRequest.unknownVendorDetails.previousRequests}
                         </span>
                       </div>
                     </div>
                     {selectedRequest.unknownVendorDetails.flaggedReasons?.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-amber-200 dark:border-amber-500/20">
-                        <span className="text-xs text-slate-500 block mb-2">Flagged Reasons:</span>
-                        <div className="flex flex-wrap gap-2">
+                        <span className="text-[10px] sm:text-xs text-slate-500 block mb-2">Flagged Reasons:</span>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {selectedRequest.unknownVendorDetails.flaggedReasons.map((reason, idx) => (
-                            <span key={idx} className="px-2 py-1 bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs rounded-lg">
+                            <span key={idx} className="px-2 py-1 bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 text-[10px] sm:text-xs rounded-lg">
                               {reason}
                             </span>
                           ))}
@@ -643,25 +667,25 @@ const HITLTab = ({
                 {/* Email Checklist for Unknown Vendors or Missing Information */}
                 {(selectedRequest.vendorCategory === 'Unknown' || getHITLReason(selectedRequest).type === 'missing') && (
                   <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                    <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <FileText size={16} className="text-violet-600 dark:text-violet-400" />
-                        <h4 className="font-medium text-slate-800 dark:text-slate-200">Email Documentation</h4>
+                        <FileText size={14} className="text-violet-600 dark:text-violet-400 sm:w-4 sm:h-4" />
+                        <h4 className="font-medium text-sm sm:text-base text-slate-800 dark:text-slate-200">Email Documentation</h4>
                       </div>
                       {hasAllItems ? <Badge variant="success">Complete</Badge> : <Badge variant="danger">{missingItems.length} Missing</Badge>}
                     </div>
-                    <div className="p-4">
-                      <div className="grid grid-cols-2 gap-2 mb-4">
+                    <div className="p-3 sm:p-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                         {emailDataStatus.map((item) => (
-                          <div key={item.id} className={`flex items-center gap-2 p-2 rounded-lg ${item.present ? 'bg-emerald-50 dark:bg-emerald-500/10' : 'bg-rose-50 dark:bg-rose-500/10'}`}>
-                            {item.present ? <CheckSquare size={16} className="text-emerald-600 dark:text-emerald-400" /> : <Square size={16} className="text-rose-600 dark:text-rose-400" />}
-                            <span className={`text-sm ${item.present ? 'text-emerald-700 dark:text-emerald-300' : 'text-rose-700 dark:text-rose-300'}`}>{item.label}</span>
+                          <div key={item.id} className={`flex items-center gap-2 p-1.5 sm:p-2 rounded-lg ${item.present ? 'bg-emerald-50 dark:bg-emerald-500/10' : 'bg-rose-50 dark:bg-rose-500/10'}`}>
+                            {item.present ? <CheckSquare size={14} className="text-emerald-600 dark:text-emerald-400 sm:w-4 sm:h-4" /> : <Square size={14} className="text-rose-600 dark:text-rose-400 sm:w-4 sm:h-4" />}
+                            <span className={`text-xs sm:text-sm ${item.present ? 'text-emerald-700 dark:text-emerald-300' : 'text-rose-700 dark:text-rose-300'}`}>{item.label}</span>
                           </div>
                         ))}
                       </div>
                       {!hasAllItems && (
-                        <button onClick={handleOpenEmailModal} className="w-full px-4 py-3 bg-violet-100 dark:bg-violet-500/20 hover:bg-violet-200 dark:hover:bg-violet-500/30 border border-violet-300 dark:border-violet-500/30 text-violet-700 dark:text-violet-400 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all">
-                          <Mail size={16} />
+                        <button onClick={handleOpenEmailModal} className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-violet-100 dark:bg-violet-500/20 hover:bg-violet-200 dark:hover:bg-violet-500/30 border border-violet-300 dark:border-violet-500/30 text-violet-700 dark:text-violet-400 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all">
+                          <Mail size={14} className="sm:w-4 sm:h-4" />
                           Request Missing Information
                         </button>
                       )}
@@ -670,51 +694,51 @@ const HITLTab = ({
                 )}
 
                 {/* Price Impact */}
-                <div className="grid grid-cols-4 gap-3">
-                  <div className={`rounded-xl p-3 ${selectedRequest.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
-                    <span className="text-xs text-slate-500 block">Price Change</span>
-                    <span className={`text-xl font-mono font-bold ${selectedRequest.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+                  <div className={`rounded-xl p-2.5 sm:p-3 ${selectedRequest.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
+                    <span className="text-[10px] sm:text-xs text-slate-500 block">Price Change</span>
+                    <span className={`text-lg sm:text-xl font-mono font-bold ${selectedRequest.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                       {selectedRequest.priceChange > 0 ? '+' : ''}{selectedRequest.priceChange}%
                     </span>
                   </div>
-                  <div className={`rounded-xl p-3 ${selectedRequest.marginImpact < 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
-                    <span className="text-xs text-slate-500 block">Margin Impact</span>
-                    <span className={`text-xl font-mono font-bold ${selectedRequest.marginImpact < 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                  <div className={`rounded-xl p-2.5 sm:p-3 ${selectedRequest.marginImpact < 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
+                    <span className="text-[10px] sm:text-xs text-slate-500 block">Margin Impact</span>
+                    <span className={`text-lg sm:text-xl font-mono font-bold ${selectedRequest.marginImpact < 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                       {selectedRequest.marginImpact > 0 ? '+' : ''}{selectedRequest.marginImpact}%
                     </span>
                   </div>
-                  <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-3">
-                    <span className="text-xs text-slate-500 block">Threshold</span>
-                    <span className="text-xl font-mono font-bold text-slate-900 dark:text-white">{MARGIN_EROSION_THRESHOLD}%</span>
+                  <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-2.5 sm:p-3">
+                    <span className="text-[10px] sm:text-xs text-slate-500 block">Threshold</span>
+                    <span className="text-lg sm:text-xl font-mono font-bold text-slate-900 dark:text-white">{MARGIN_EROSION_THRESHOLD}%</span>
                   </div>
-                  <div className="bg-violet-50 dark:bg-violet-500/10 rounded-xl p-3">
-                    <span className="text-xs text-slate-500 block">Confidence</span>
-                    <span className="text-xl font-bold text-violet-600 dark:text-violet-400">{selectedRequest.confidence}%</span>
+                  <div className="bg-violet-50 dark:bg-violet-500/10 rounded-xl p-2.5 sm:p-3">
+                    <span className="text-[10px] sm:text-xs text-slate-500 block">Confidence</span>
+                    <span className="text-lg sm:text-xl font-bold text-violet-600 dark:text-violet-400">{selectedRequest.confidence}%</span>
                   </div>
                 </div>
 
                 {/* BOM Impact */}
                 {selectedRequest.bomAnalysis && (
                   <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                    <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
-                      <Package size={16} className="text-cyan-600 dark:text-cyan-400" />
-                      <h4 className="font-medium text-slate-800 dark:text-slate-200">BOM Impact</h4>
-                      <span className="ml-auto text-xs text-slate-500">{selectedRequest.bomAnalysis.summary.totalProductsAffected} products</span>
+                    <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                      <Package size={14} className="text-cyan-600 dark:text-cyan-400 sm:w-4 sm:h-4" />
+                      <h4 className="font-medium text-sm sm:text-base text-slate-800 dark:text-slate-200">BOM Impact</h4>
+                      <span className="ml-auto text-[10px] sm:text-xs text-slate-500">{selectedRequest.bomAnalysis.summary.totalProductsAffected} products</span>
                     </div>
-                    <div className="p-4 grid grid-cols-3 gap-3">
-                      <div className={`rounded-lg p-3 ${selectedRequest.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
-                        <span className="text-xs text-slate-500 block">Annual Impact</span>
-                        <span className={`text-lg font-mono font-bold ${selectedRequest.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                    <div className="p-3 sm:p-4 grid grid-cols-3 gap-2 sm:gap-3">
+                      <div className={`rounded-lg p-2 sm:p-3 ${selectedRequest.priceChange > 0 ? 'bg-rose-50 dark:bg-rose-500/10' : 'bg-emerald-50 dark:bg-emerald-500/10'}`}>
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Annual Impact</span>
+                        <span className={`text-sm sm:text-lg font-mono font-bold ${selectedRequest.priceChange > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                           {selectedRequest.priceChange > 0 ? '+' : '-'}${Math.abs(parseFloat(selectedRequest.bomAnalysis.summary.totalAnnualImpact)).toLocaleString()}
                         </span>
                       </div>
-                      <div className="bg-slate-100 dark:bg-slate-800/30 rounded-lg p-3">
-                        <span className="text-xs text-slate-500 block">Assemblies</span>
-                        <span className="text-lg font-bold text-slate-900 dark:text-white">{selectedRequest.bomAnalysis.summary.totalProductsAffected}</span>
+                      <div className="bg-slate-100 dark:bg-slate-800/30 rounded-lg p-2 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-slate-500 block">Assemblies</span>
+                        <span className="text-sm sm:text-lg font-bold text-slate-900 dark:text-white">{selectedRequest.bomAnalysis.summary.totalProductsAffected}</span>
                       </div>
-                      <div className="bg-amber-50 dark:bg-amber-500/10 rounded-lg p-3">
-                        <span className="text-xs text-amber-600 dark:text-amber-400 block">Highest Impact</span>
-                        <span className="text-lg font-mono font-bold text-amber-700 dark:text-amber-300">{selectedRequest.bomAnalysis.summary.highestImpactProduct}</span>
+                      <div className="bg-amber-50 dark:bg-amber-500/10 rounded-lg p-2 sm:p-3">
+                        <span className="text-[10px] sm:text-xs text-amber-600 dark:text-amber-400 block">Highest</span>
+                        <span className="text-sm sm:text-lg font-mono font-bold text-amber-700 dark:text-amber-300 truncate block">{selectedRequest.bomAnalysis.summary.highestImpactProduct}</span>
                       </div>
                     </div>
                   </div>
@@ -743,30 +767,30 @@ const HITLTab = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30">
-                <div className="grid grid-cols-3 gap-3">
+              <div className="px-3 sm:px-5 py-3 sm:py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                   <button
                     onClick={() => handleHumanDecision(selectedRequest.id, 'approve')}
                     disabled={isProcessing}
-                    className="px-4 py-3 bg-emerald-100 dark:bg-emerald-500/20 hover:bg-emerald-200 dark:hover:bg-emerald-500/30 border border-emerald-300 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                    className="px-3 sm:px-4 py-2.5 sm:py-3 bg-emerald-100 dark:bg-emerald-500/20 hover:bg-emerald-200 dark:hover:bg-emerald-500/30 border border-emerald-300 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 sm:gap-2 transition-all disabled:opacity-50"
                   >
-                    {isProcessing ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />}
+                    {isProcessing ? <Loader2 size={14} className="animate-spin sm:w-4 sm:h-4" /> : <Check size={14} className="sm:w-4 sm:h-4" />}
                     Approve
                   </button>
                   <button
                     onClick={handleOpenRejectionModal}
                     disabled={isProcessing}
-                    className="px-4 py-3 bg-rose-100 dark:bg-rose-500/20 hover:bg-rose-200 dark:hover:bg-rose-500/30 border border-rose-300 dark:border-rose-500/30 text-rose-700 dark:text-rose-400 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                    className="px-3 sm:px-4 py-2.5 sm:py-3 bg-rose-100 dark:bg-rose-500/20 hover:bg-rose-200 dark:hover:bg-rose-500/30 border border-rose-300 dark:border-rose-500/30 text-rose-700 dark:text-rose-400 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 sm:gap-2 transition-all disabled:opacity-50"
                   >
-                    {isProcessing ? <Loader2 size={16} className="animate-spin" /> : <X size={16} />}
+                    {isProcessing ? <Loader2 size={14} className="animate-spin sm:w-4 sm:h-4" /> : <X size={14} className="sm:w-4 sm:h-4" />}
                     Reject
                   </button>
                   <button
                     onClick={() => handleHumanDecision(selectedRequest.id, 'approve')}
                     disabled={isProcessing}
-                    className="px-4 py-3 bg-cyan-100 dark:bg-cyan-500/20 hover:bg-cyan-200 dark:hover:bg-cyan-500/30 border border-cyan-300 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-400 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                    className="px-3 sm:px-4 py-2.5 sm:py-3 bg-cyan-100 dark:bg-cyan-500/20 hover:bg-cyan-200 dark:hover:bg-cyan-500/30 border border-cyan-300 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-400 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 sm:gap-2 transition-all disabled:opacity-50 col-span-2 sm:col-span-1"
                   >
-                    {isProcessing ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
+                    {isProcessing ? <Loader2 size={14} className="animate-spin sm:w-4 sm:h-4" /> : <RefreshCw size={14} className="sm:w-4 sm:h-4" />}
                     Sync to Epicor
                   </button>
                 </div>
