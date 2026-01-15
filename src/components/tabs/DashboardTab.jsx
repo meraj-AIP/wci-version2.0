@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
-import { FileText, Cpu, Clock, User, CheckCircle, XCircle, TrendingDown, Filter, RefreshCw, Activity, X, ChevronRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { FileText, Cpu, User, Filter, RefreshCw, Activity, X, ChevronRight } from 'lucide-react'
 import { KPICard, StatusBadge, ConfidenceBar, SLATimer, Badge, Pagination } from '../ui'
 
 // Helper to format vendor category display labels
@@ -41,6 +42,7 @@ const DashboardTab = ({
   filteredRequests,
   setSelectedRequest
 }) => {
+  const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(15)
   const [showFilters, setShowFilters] = useState(false)
@@ -102,14 +104,10 @@ const DashboardTab = ({
   return (
     <div className="space-y-4 sm:space-y-6 animate-slide-up">
       {/* KPI Grid - Responsive */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-4">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4">
         <KPICard title="Total Requests" value={kpis.total} icon={FileText} trend="up" trendValue="+12% vs last week" />
-        <KPICard title="AI Processed" value={kpis.processed} icon={Cpu} variant="info" subtitle="Autonomous decisions" />
-        <KPICard title="Pending" value={kpis.pending} icon={Clock} variant="warning" />
-        <KPICard title="Human Review" value={kpis.humanReview} icon={User} variant="danger" subtitle="Requires attention" />
-        <KPICard title="Auto-Approved" value={kpis.autoApproved} icon={CheckCircle} variant="success" />
-        <KPICard title="Rejected" value={kpis.rejected} icon={XCircle} variant="danger" />
-        <KPICard title="Margin Impact" value={`${kpis.marginImpact}%`} icon={TrendingDown} variant={parseFloat(kpis.marginImpact) < 0 ? 'danger' : 'success'} />
+        <KPICard title="Processed" value={kpis.processed} icon={Cpu} variant="info" subtitle="Autonomous decisions" onClick={() => navigate('/decisions')} />
+        <KPICard title="Pending Review" value={kpis.humanReview} icon={User} variant="danger" subtitle="Requires attention" onClick={() => navigate('/hitl')} />
       </div>
 
       {/* Agent Activity Feed */}

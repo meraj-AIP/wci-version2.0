@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { generateRequests, initialAgentActivities } from '../data/mockData'
 import { Navbar } from './layout'
-import { DashboardTab, DecisionsTab, HITLTab } from './tabs'
+import { DashboardTab, DecisionsTab, HITLTab, SettingsTab } from './tabs'
 import { RequestDetailModal } from './modals'
 
 const ARIES = () => {
@@ -13,6 +13,7 @@ const ARIES = () => {
     const path = location.pathname
     if (path === '/decisions') return 'decisions'
     if (path === '/hitl') return 'hitl'
+    if (path === '/settings') return 'settings'
     return 'dashboard'
   }
 
@@ -117,6 +118,7 @@ const ARIES = () => {
               />
             }
           />
+          <Route path="/settings" element={<SettingsTab />} />
         </Routes>
       </main>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Cpu, BarChart3, Zap, Shield, Search, Sun, Moon, Menu, X } from 'lucide-react'
+import { Cpu, BarChart3, Zap, Shield, Search, Sun, Moon, Menu, X, Settings } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 
@@ -19,6 +19,7 @@ const Navbar = ({
     const path = location.pathname
     if (path === '/decisions') return 'decisions'
     if (path === '/hitl') return 'hitl'
+    if (path === '/settings') return 'settings'
     return 'dashboard'
   }
 
@@ -28,6 +29,7 @@ const Navbar = ({
     { id: 'dashboard', label: 'Dashboard', shortLabel: 'Dashboard', icon: BarChart3, path: '/' },
     { id: 'decisions', label: 'Decisions & Actions', shortLabel: 'Decisions', icon: Zap, path: '/decisions' },
     { id: 'hitl', label: 'Human-in-the-Loop', shortLabel: 'HITL', icon: Shield, badge: hitlCount, path: '/hitl' },
+    { id: 'settings', label: 'Settings', shortLabel: 'Settings', icon: Settings, path: '/settings' },
   ]
 
   const handleNavClick = () => {

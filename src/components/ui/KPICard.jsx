@@ -1,6 +1,6 @@
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
-const KPICard = ({ title, value, subtitle, icon: Icon, trend, trendValue, variant = 'default' }) => {
+const KPICard = ({ title, value, subtitle, icon: Icon, trend, trendValue, variant = 'default', onClick }) => {
   const variants = {
     default: 'from-slate-100 to-slate-50 dark:from-slate-800/50 dark:to-slate-900/50 border-slate-200 dark:border-slate-700/50',
     success: 'from-emerald-50 to-slate-50 dark:from-emerald-900/20 dark:to-slate-900/50 border-emerald-200 dark:border-emerald-500/20',
@@ -10,7 +10,10 @@ const KPICard = ({ title, value, subtitle, icon: Icon, trend, trendValue, varian
   }
 
   return (
-    <div className={`bg-gradient-to-br ${variants[variant]} border rounded-xl p-4 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-300`}>
+    <div
+      onClick={onClick}
+      className={`bg-gradient-to-br ${variants[variant]} border rounded-xl p-4 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-300 ${onClick ? 'cursor-pointer hover:shadow-md' : ''}`}
+    >
       <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-500/5 to-transparent rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500" />
       <div className="flex items-start justify-between relative">
         <div>

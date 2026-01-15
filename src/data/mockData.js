@@ -141,16 +141,24 @@ const generateRationale = (vendor, priceChange, marginImpact, confidence) => {
   return reasons.join(' ')
 }
 
-const generateActions = (status) => {
+const generateActions = (status, decisionOwner = 'AI Agent') => {
   const actions = []
   const timestamp = new Date().toISOString()
 
   if (status === 'Auto-Approved' || status === 'Processed') {
-    actions.push({ name: 'ERP Price Update Triggered', executor: 'AI Agent', status: 'Completed', timestamp })
-    actions.push({ name: 'Supplier Notification Sent', executor: 'AI Agent', status: 'Completed', timestamp })
+    const executor = decisionOwner === 'Human' ? 'Human' : 'AI Agent'
+    actions.push({ name: 'ERP Price Update Triggered', executor, status: 'Completed', timestamp })
+    actions.push({ name: 'Supplier Notification Sent', executor, status: 'Completed', timestamp })
+    if (decisionOwner === 'Human') {
+      actions.push({ name: 'Manual Review Completed', executor: 'Human', status: 'Completed', timestamp })
+    }
   } else if (status === 'Auto-Rejected') {
-    actions.push({ name: 'Counter-Offer Generated', executor: 'AI Agent', status: 'Completed', timestamp })
-    actions.push({ name: 'Supplier Notification Sent', executor: 'AI Agent', status: 'Completed', timestamp })
+    const executor = decisionOwner === 'Human' ? 'Human' : 'AI Agent'
+    actions.push({ name: 'Counter-Offer Generated', executor, status: 'Completed', timestamp })
+    actions.push({ name: 'Supplier Notification Sent', executor, status: 'Completed', timestamp })
+    if (decisionOwner === 'Human') {
+      actions.push({ name: 'Manual Rejection Processed', executor: 'Human', status: 'Completed', timestamp })
+    }
   } else if (status === 'Human Review') {
     actions.push({ name: 'Escalation Triggered', executor: 'AI Agent', status: 'Completed', timestamp })
     actions.push({ name: 'Request Parked for Review', executor: 'AI Agent', status: 'Pending', timestamp })
@@ -206,8 +214,15 @@ export const generateRequests = (count = 75) => {
     ]
 
     if (triggers.length > 0 && Math.random() > 0.3) {
-      status = 'Human Review'
-      decisionOwner = 'Pending Human'
+      // Some human review items are still pending, others have been completed by humans
+      if (Math.random() > 0.5) {
+        status = 'Human Review'
+        decisionOwner = 'Pending Human'
+      } else {
+        // Human has already reviewed and decided
+        status = Math.random() > 0.4 ? 'Processed' : 'Auto-Rejected'
+        decisionOwner = 'Human'
+      }
     } else if (confidence > 85 && parseFloat(priceChange) < 5) {
       status = Math.random() > 0.3 ? 'Auto-Approved' : 'Processed'
     } else if (confidence < 70 || parseFloat(priceChange) > 15) {
@@ -244,8 +259,8 @@ export const generateRequests = (count = 75) => {
       reviewType: status === 'Human Review' ? reviewType : null,
       rationale: generateRationale(vendor, parseFloat(priceChange), parseFloat(marginImpact), confidence),
       rejectionReason,
-      actions: generateActions(status),
-      assignedReviewer: status === 'Human Review' ? ['Sarah Chen', 'Michael Torres', 'Emily Watson'][Math.floor(Math.random() * 3)] : null,
+      actions: generateActions(status, decisionOwner),
+      assignedReviewer: (status === 'Human Review' || decisionOwner === 'Human') ? ['Sarah Chen', 'Michael Torres', 'Emily Watson'][Math.floor(Math.random() * 3)] : null,
       bomAnalysis: generateBOMAnalysis(parseFloat(priceChange), parseFloat(marginImpact)),
       missingInfo: generateMissingInfo(vendor.category),
       unknownVendorDetails: vendor.category === 'Unknown' ? generateUnknownVendorDetails(vendor.name) : null,
