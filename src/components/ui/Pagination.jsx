@@ -58,7 +58,7 @@ const Pagination = ({
             <select
               value={itemsPerPage}
               onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-              className="px-2 py-1 text-sm border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+              className="px-2 py-1 text-sm border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
             >
               {[10, 15, 25, 50].map((num) => (
                 <option key={num} value={num}>{num}</option>
@@ -95,7 +95,7 @@ const Pagination = ({
               onClick={() => onPageChange(page)}
               className={`min-w-[32px] h-8 px-2 text-sm rounded-lg transition-colors ${
                 currentPage === page
-                  ? 'bg-cyan-600 text-white font-medium'
+                  ? 'bg-primary-500 text-white font-medium'
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700'
               }`}
             >

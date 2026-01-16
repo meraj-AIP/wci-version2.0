@@ -129,7 +129,7 @@ const SettingsTab = () => {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="px-3 py-1.5 text-xs sm:text-sm bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg flex items-center gap-1.5 transition-colors disabled:opacity-50"
+              className="px-3 py-1.5 text-xs sm:text-sm bg-primary-500 hover:bg-primary-600 text-white rounded-lg flex items-center gap-1.5 transition-colors disabled:opacity-50"
             >
               {saving ? <RefreshCw size={14} className="animate-spin" /> : <Save size={14} />}
               {saving ? 'Saving...' : 'Save Changes'}
@@ -145,7 +145,7 @@ const SettingsTab = () => {
           <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
             <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
               <div className="flex items-center gap-2">
-                <Sliders size={16} className="text-cyan-600 dark:text-cyan-400" />
+                <Sliders size={16} className="text-primary-500 dark:text-secondary-400" />
                 <h3 className="font-medium text-sm sm:text-base text-slate-800 dark:text-slate-200">Threshold Limits</h3>
               </div>
             </div>
@@ -154,7 +154,7 @@ const SettingsTab = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm text-slate-700 dark:text-slate-300">Margin Erosion Threshold</label>
-                  <span className="text-sm font-mono font-bold text-cyan-600 dark:text-cyan-400">{thresholds.marginErosion}%</span>
+                  <span className="text-sm font-mono font-bold text-primary-500 dark:text-secondary-400">{thresholds.marginErosion}%</span>
                 </div>
                 <input
                   type="range"
@@ -162,7 +162,7 @@ const SettingsTab = () => {
                   max="15"
                   value={thresholds.marginErosion}
                   onChange={(e) => handleThresholdChange('marginErosion', parseInt(e.target.value))}
-                  className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-600"
+                  className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary-500"
                 />
                 <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                   <span>1%</span>
@@ -174,7 +174,7 @@ const SettingsTab = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm text-slate-700 dark:text-slate-300">Price Increase Threshold</label>
-                  <span className="text-sm font-mono font-bold text-cyan-600 dark:text-cyan-400">{thresholds.priceIncrease}%</span>
+                  <span className="text-sm font-mono font-bold text-primary-500 dark:text-secondary-400">{thresholds.priceIncrease}%</span>
                 </div>
                 <input
                   type="range"
@@ -182,7 +182,7 @@ const SettingsTab = () => {
                   max="30"
                   value={thresholds.priceIncrease}
                   onChange={(e) => handleThresholdChange('priceIncrease', parseInt(e.target.value))}
-                  className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-600"
+                  className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary-500"
                 />
                 <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                   <span>5%</span>
@@ -203,7 +203,7 @@ const SettingsTab = () => {
                           ? level === 'low'
                             ? 'bg-amber-100 dark:bg-amber-500/20 border-2 border-amber-400 text-amber-700 dark:text-amber-400'
                             : level === 'medium'
-                            ? 'bg-cyan-100 dark:bg-cyan-500/20 border-2 border-cyan-400 text-cyan-700 dark:text-cyan-400'
+                            ? 'bg-primary-100 dark:bg-secondary-500/20 border-2 border-primary-400 dark:border-secondary-400 text-primary-700 dark:text-secondary-400'
                             : 'bg-emerald-100 dark:bg-emerald-500/20 border-2 border-emerald-400 text-emerald-700 dark:text-emerald-400'
                           : 'bg-slate-100 dark:bg-slate-800 border-2 border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
                       }`}
@@ -245,7 +245,7 @@ const SettingsTab = () => {
                     <span className="text-[10px] sm:text-xs text-slate-500">{item.desc}</span>
                   </div>
                   {notifications[item.key] ? (
-                    <ToggleRight size={28} className="text-cyan-600 dark:text-cyan-400" />
+                    <ToggleRight size={28} className="text-primary-500 dark:text-secondary-400" />
                   ) : (
                     <ToggleLeft size={28} className="text-slate-400" />
                   )}
@@ -379,12 +379,12 @@ const SettingsTab = () => {
           </div>
 
           {/* Quick Info */}
-          <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-500/10 dark:to-blue-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl p-4">
+          <div className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-500/10 dark:to-primary-500/5 border border-primary-200 dark:border-primary-500/20 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
-              <Info size={16} className="text-cyan-600 dark:text-cyan-400" />
-              <h3 className="font-medium text-sm text-cyan-800 dark:text-cyan-300">Quick Info</h3>
+              <Info size={16} className="text-primary-500 dark:text-secondary-400" />
+              <h3 className="font-medium text-sm text-primary-800 dark:text-secondary-300">Quick Info</h3>
             </div>
-            <div className="space-y-2 text-xs text-cyan-700 dark:text-cyan-400">
+            <div className="space-y-2 text-xs text-primary-700 dark:text-secondary-400">
               <p><strong>Version:</strong> WCI Co-Pilot v2.0.1</p>
               <p><strong>Environment:</strong> Production</p>
               <p><strong>Last Updated:</strong> Jan 15, 2026</p>

@@ -2,7 +2,7 @@ const ConfidenceBar = ({ score }) => {
   const getColor = (s) => {
     if (s >= 85) return 'bg-emerald-500'
     if (s >= 70) return 'bg-amber-500'
-    return 'bg-rose-500'
+    return 'bg-secondary-500'
   }
 
   return (

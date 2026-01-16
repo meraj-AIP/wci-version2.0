@@ -113,13 +113,13 @@ const DashboardTab = ({
       {/* Agent Activity Feed */}
       <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-3 sm:p-4">
         <div className="flex items-center gap-2 mb-3">
-          <Activity size={16} className="text-cyan-600 dark:text-cyan-400" />
+          <Activity size={16} className="text-primary-500 dark:text-secondary-400" />
           <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300">Live Agent Activity</h3>
         </div>
         <div className="flex gap-2 sm:gap-4 overflow-x-auto pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
           {agentActivity.map((activity, i) => (
             <div key={i} className="flex items-center gap-2 px-2 sm:px-3 py-2 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50 whitespace-nowrap flex-shrink-0">
-              <div className="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full animate-pulse" />
+              <div className="w-1.5 h-1.5 bg-secondary-500 dark:bg-secondary-400 rounded-full animate-pulse" />
               <span className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400">{activity.message}</span>
             </div>
           ))}
@@ -138,14 +138,14 @@ const DashboardTab = ({
               onClick={() => setShowFilters(!showFilters)}
               className={`px-3 py-1.5 text-xs rounded-lg flex items-center gap-1.5 transition-colors ${
                 showFilters || activeFilterCount > 0
-                  ? 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border border-cyan-300 dark:border-cyan-500/30'
+                  ? 'bg-primary-100 dark:bg-primary-500/20 text-primary-700 dark:text-secondary-400 border border-primary-300 dark:border-secondary-500/30'
                   : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400'
               }`}
             >
               <Filter size={12} />
               <span className="hidden xs:inline">Filters</span>
               {activeFilterCount > 0 && (
-                <span className="px-1.5 py-0.5 bg-cyan-600 text-white text-[10px] rounded-full font-medium">
+                <span className="px-1.5 py-0.5 bg-secondary-500 text-white text-[10px] rounded-full font-medium">
                   {activeFilterCount}
                 </span>
               )}
@@ -167,7 +167,7 @@ const DashboardTab = ({
                 <select
                   value={filters.status}
                   onChange={(e) => handleFilterChange('status', e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500"
+                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500"
                 >
                   {STATUS_OPTIONS.map(opt => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -181,7 +181,7 @@ const DashboardTab = ({
                 <select
                   value={filters.category}
                   onChange={(e) => handleFilterChange('category', e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500"
+                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500"
                 >
                   {CATEGORY_OPTIONS.map(opt => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -195,7 +195,7 @@ const DashboardTab = ({
                 <select
                   value={filters.owner}
                   onChange={(e) => handleFilterChange('owner', e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500"
+                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500"
                 >
                   {OWNER_OPTIONS.map(opt => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -222,9 +222,9 @@ const DashboardTab = ({
               <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
                 <span className="text-xs text-slate-500">Active:</span>
                 {filters.status !== 'all' && (
-                  <span className="px-2 py-1 bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-xs rounded-lg flex items-center gap-1">
+                  <span className="px-2 py-1 bg-primary-100 dark:bg-primary-500/20 text-primary-700 dark:text-secondary-400 text-xs rounded-lg flex items-center gap-1">
                     {STATUS_OPTIONS.find(o => o.value === filters.status)?.label}
-                    <button onClick={() => handleFilterChange('status', 'all')} className="hover:text-cyan-900 dark:hover:text-cyan-200">
+                    <button onClick={() => handleFilterChange('status', 'all')} className="hover:text-primary-900 dark:hover:text-secondary-200">
                       <X size={10} />
                     </button>
                   </span>
@@ -269,7 +269,7 @@ const DashboardTab = ({
                   style={{ animationDelay: `${idx * 30}ms` }}
                 >
                   <td className="px-4 py-3">
-                    <span className="font-mono text-sm text-cyan-600 dark:text-cyan-400">{request.id}</span>
+                    <span className="font-mono text-sm text-primary-500 dark:text-secondary-400">{request.id}</span>
                   </td>
                   <td className="px-4 py-3">
                     <span className="text-sm text-slate-800 dark:text-slate-200">{request.vendor}</span>
@@ -305,7 +305,7 @@ const DashboardTab = ({
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
-                      {request.decisionOwner === 'AI Agent' ? <Cpu size={12} className="text-cyan-600 dark:text-cyan-400" /> : <User size={12} className="text-violet-600 dark:text-violet-400" />}
+                      {request.decisionOwner === 'AI Agent' ? <Cpu size={12} className="text-primary-500 dark:text-secondary-400" /> : <User size={12} className="text-violet-600 dark:text-violet-400" />}
                       {request.decisionOwner}
                     </div>
                   </td>
@@ -360,7 +360,7 @@ const DashboardTab = ({
                 <div className="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-2">
                   <span className="text-slate-500 block">Owner</span>
                   <div className="flex items-center gap-1">
-                    {request.decisionOwner === 'AI Agent' ? <Cpu size={10} className="text-cyan-600 dark:text-cyan-400" /> : <User size={10} className="text-violet-600 dark:text-violet-400" />}
+                    {request.decisionOwner === 'AI Agent' ? <Cpu size={10} className="text-primary-500 dark:text-secondary-400" /> : <User size={10} className="text-violet-600 dark:text-violet-400" />}
                     <span className="text-slate-700 dark:text-slate-300">{request.decisionOwner === 'AI Agent' ? 'AI' : 'Human'}</span>
                   </div>
                 </div>

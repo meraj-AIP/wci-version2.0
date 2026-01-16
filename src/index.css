@@ -2,19 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Proxima Nova Font - Add your font files or use a CDN */
+@font-face {
+  font-family: 'proxima_novamedium';
+  src: local('Proxima Nova Medium'), local('ProximaNova-Medium');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
 
-/* Base styles for light/dark mode - using CSS variables for reliable dark mode */
+/* Brand Colors */
 :root {
-  --bg-primary: #f8fafc; /* slate-50 */
-  --text-primary: #0f172a; /* slate-900 */
+  --color-primary: #001a72;
+  --color-primary-light: #334f97;
+  --color-primary-dark: #00155b;
+  --color-secondary: #ff6720;
+  --color-secondary-light: #ff874f;
+  --color-secondary-dark: #cc521a;
+  --bg-primary: #f8fafc;
+  --text-primary: #0f172a;
 }
 
 :root.dark {
-  --bg-primary: #020617; /* slate-950 */
-  --text-primary: #f1f5f9; /* slate-100 */
+  --bg-primary: #020617;
+  --text-primary: #f1f5f9;
 }
 
 html {

@@ -145,17 +145,17 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
         <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
-            <Zap size={14} className="text-cyan-600 dark:text-cyan-400" />
+            <Zap size={14} className="text-primary-500 dark:text-secondary-400" />
             <span className="text-[10px] text-slate-500 uppercase tracking-wider">Total</span>
           </div>
           <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">{totalDecisions}</span>
         </div>
-        <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-500/10 dark:to-blue-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl p-2.5 sm:p-3">
+        <div className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-500/10 dark:to-primary-500/5 border border-primary-200 dark:border-primary-500/20 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
-            <Bot size={14} className="text-cyan-600 dark:text-cyan-400" />
-            <span className="text-[10px] text-cyan-700 dark:text-cyan-300 uppercase tracking-wider">AI Auto</span>
+            <Bot size={14} className="text-primary-500 dark:text-secondary-400" />
+            <span className="text-[10px] text-primary-700 dark:text-secondary-300 uppercase tracking-wider">AI Auto</span>
           </div>
-          <span className="text-lg sm:text-xl font-bold text-cyan-700 dark:text-cyan-300">{aiDecisions}</span>
+          <span className="text-lg sm:text-xl font-bold text-primary-700 dark:text-secondary-300">{aiDecisions}</span>
         </div>
         <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-500/10 dark:to-purple-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-2.5 sm:p-3">
           <div className="flex items-center gap-2 mb-1">
@@ -193,7 +193,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
             onClick={() => handleFilterChange(filter.id)}
             className={`px-2 sm:px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1 sm:gap-1.5 transition-all flex-shrink-0 ${
               activeFilter === filter.id
-                ? 'bg-cyan-100 dark:bg-cyan-500/20 border-cyan-300 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-400'
+                ? 'bg-primary-100 dark:bg-primary-500/20 border-primary-300 dark:border-secondary-500/30 text-primary-700 dark:text-secondary-400'
                 : 'bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
             }`}
           >
@@ -202,7 +202,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
             <span className="sm:hidden">{filter.shortLabel}</span>
             <span className={`px-1.5 py-0.5 rounded text-[10px] ${
               activeFilter === filter.id
-                ? 'bg-cyan-200 dark:bg-cyan-500/30'
+                ? 'bg-primary-200 dark:bg-secondary-500/30'
                 : 'bg-slate-100 dark:bg-slate-800'
             }`}>
               {filter.count}
@@ -219,7 +219,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
           <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Sparkles size={16} className="text-cyan-600 dark:text-cyan-400" />
+                <Sparkles size={16} className="text-primary-500 dark:text-secondary-400" />
                 <span className="font-medium text-sm text-slate-800 dark:text-slate-200">Activity Stream</span>
               </div>
               <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-100 dark:bg-emerald-500/20 rounded-full">
@@ -244,7 +244,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                   }}
                   className={`px-3 py-3 border-b border-slate-100 dark:border-slate-800/50 cursor-pointer transition-all ${
                     isSelected
-                      ? 'bg-cyan-50 dark:bg-cyan-500/10 border-l-2 border-l-cyan-500'
+                      ? 'bg-primary-50 dark:bg-secondary-500/10 border-l-2 border-l-secondary-500'
                       : 'hover:bg-slate-50 dark:hover:bg-slate-800/30 border-l-2 border-l-transparent'
                   }`}
                 >
@@ -255,7 +255,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                         <div className="flex items-center gap-2.5">
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
                             entry.isAi
-                              ? 'bg-gradient-to-br from-cyan-400 to-blue-500'
+                              ? 'bg-gradient-to-br from-primary-400 to-primary-600'
                               : 'bg-gradient-to-br from-violet-400 to-purple-500'
                           }`}>
                             {entry.isAi ? (
@@ -265,7 +265,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                             )}
                           </div>
                           <div className="min-w-0">
-                            <span className="font-mono text-sm text-cyan-600 dark:text-cyan-400 block">{entry.requestId}</span>
+                            <span className="font-mono text-sm text-primary-500 dark:text-secondary-400 block">{entry.requestId}</span>
                             <span className="text-sm text-slate-700 dark:text-slate-300 truncate block">{entry.vendor}</span>
                           </div>
                         </div>
@@ -374,7 +374,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
                       currentSelection.isAi
-                        ? 'bg-gradient-to-br from-cyan-400 to-blue-500 shadow-cyan-500/20'
+                        ? 'bg-gradient-to-br from-primary-400 to-primary-600 shadow-primary-500/20'
                         : 'bg-gradient-to-br from-violet-400 to-purple-500 shadow-violet-500/20'
                     }`}>
                       {currentSelection.isAi ? (
@@ -385,7 +385,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-mono text-base sm:text-lg font-semibold text-cyan-600 dark:text-cyan-400">{currentSelection.requestId}</span>
+                        <span className="font-mono text-base sm:text-lg font-semibold text-primary-500 dark:text-secondary-400">{currentSelection.requestId}</span>
                         {currentSelection.type === 'decision' && currentSelection.action === 'Synced to Epicor' && (
                           <div className="flex items-center gap-1 px-2 py-0.5 bg-emerald-100 dark:bg-emerald-500/20 rounded-full">
                             <RefreshCw size={10} className="text-emerald-600 dark:text-emerald-400" />
@@ -419,12 +419,12 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
               <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-4 sm:space-y-5">
                 {/* Action Context (if action entry) */}
                 {currentSelection.type === 'action' && (
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-4 bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 rounded-xl">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-4 bg-primary-50 dark:bg-secondary-500/10 border border-primary-200 dark:border-secondary-500/20 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <Activity size={18} className="text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
+                      <Activity size={18} className="text-primary-500 dark:text-secondary-400 flex-shrink-0" />
                       <div>
-                        <span className="text-sm text-cyan-700 dark:text-cyan-300">Action:</span>
-                        <span className="ml-2 font-semibold text-cyan-800 dark:text-cyan-200">{currentSelection.actionName}</span>
+                        <span className="text-sm text-primary-700 dark:text-secondary-300">Action:</span>
+                        <span className="ml-2 font-semibold text-primary-800 dark:text-secondary-200">{currentSelection.actionName}</span>
                       </div>
                     </div>
                     <Badge variant={getActionDisplayStatus(currentSelection).variant}>
@@ -470,7 +470,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                   </div>
                   <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-3 sm:p-4 border border-slate-200 dark:border-slate-700">
                     <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                      {currentSelection.isAi ? <Bot size={14} className="text-cyan-500 sm:w-4 sm:h-4" /> : <User size={14} className="text-violet-500 sm:w-4 sm:h-4" />}
+                      {currentSelection.isAi ? <Bot size={14} className="text-primary-500 dark:text-secondary-400 sm:w-4 sm:h-4" /> : <User size={14} className="text-violet-500 sm:w-4 sm:h-4" />}
                       <span className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wider">Decision</span>
                     </div>
                     <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white truncate block">
@@ -543,7 +543,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                 {currentSelection.bomAnalysis && (
                   <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
                     <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2 flex-wrap">
-                      <Package size={16} className="text-cyan-600 dark:text-cyan-400" />
+                      <Package size={16} className="text-primary-500 dark:text-secondary-400" />
                       <h4 className="font-medium text-sm sm:text-base text-slate-800 dark:text-slate-200">BOM Impact Analysis</h4>
                       <span className="ml-auto text-xs text-slate-500">{currentSelection.bomAnalysis.summary.totalProductsAffected} products</span>
                     </div>
@@ -587,7 +587,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                             {currentSelection.bomAnalysis.affectedProducts.map((product, idx) => (
                               <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/20">
                                 <td className="px-4 py-2">
-                                  <span className="font-mono text-cyan-600 dark:text-cyan-400">{product.productId}</span>
+                                  <span className="font-mono text-primary-500 dark:text-secondary-400">{product.productId}</span>
                                 </td>
                                 <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{product.category}</td>
                                 <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">{product.usageQty}</td>
@@ -614,7 +614,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                           key={idx}
                           className={`flex items-center justify-between p-3 rounded-lg ${
                             currentSelection.type === 'action' && currentSelection.actionName === action.name
-                              ? 'bg-cyan-100 dark:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-500/30'
+                              ? 'bg-primary-100 dark:bg-secondary-500/20 border border-primary-300 dark:border-secondary-500/30'
                               : 'bg-slate-100 dark:bg-slate-800/30'
                           }`}
                         >
@@ -626,7 +626,7 @@ const DecisionsTab = ({ processedRequests, allRequests = [] }) => {
                             )}
                             <span className="text-sm text-slate-700 dark:text-slate-300">{action.name}</span>
                             {currentSelection.type === 'action' && currentSelection.actionName === action.name && (
-                              <span className="text-xs text-cyan-600 dark:text-cyan-400">(Current)</span>
+                              <span className="text-xs text-primary-500 dark:text-secondary-400">(Current)</span>
                             )}
                           </div>
                           <div className="flex items-center gap-2">

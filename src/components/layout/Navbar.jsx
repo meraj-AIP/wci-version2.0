@@ -43,7 +43,7 @@ const Navbar = ({
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo & Brand */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center pulse-glow">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center pulse-glow">
               <Cpu size={18} className="text-white sm:w-5 sm:h-5" />
             </div>
             <div>
@@ -61,14 +61,14 @@ const Navbar = ({
                 onClick={handleNavClick}
                 className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30'
+                    ? 'bg-primary-500/10 text-primary-500 dark:text-secondary-400 border border-primary-500/30 dark:border-secondary-500/30'
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <tab.icon size={16} />
                 {tab.label}
                 {tab.badge > 0 && (
-                  <span className="px-1.5 py-0.5 text-xs bg-rose-500/20 text-rose-500 dark:text-rose-400 rounded-full font-mono">
+                  <span className="px-1.5 py-0.5 text-xs bg-secondary-500/20 text-secondary-600 dark:text-secondary-400 rounded-full font-mono">
                     {tab.badge}
                   </span>
                 )}
@@ -85,7 +85,7 @@ const Navbar = ({
                 placeholder="Search requests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-48 lg:w-64 pl-9 pr-4 py-2 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
+                className="w-48 lg:w-64 pl-9 pr-4 py-2 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-primary-500/50 focus:ring-1 focus:ring-primary-500/20 transition-all"
               />
             </div>
 
@@ -138,7 +138,7 @@ const Navbar = ({
                 placeholder="Search requests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50"
+                className="w-full pl-9 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-primary-500/50"
                 autoFocus
               />
             </div>
@@ -156,14 +156,14 @@ const Navbar = ({
                   onClick={handleNavClick}
                   className={`px-4 py-3 rounded-lg text-sm font-medium flex items-center gap-3 transition-all ${
                     activeTab === tab.id
-                      ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30'
+                      ? 'bg-primary-500/10 text-primary-500 dark:text-secondary-400 border border-primary-500/30 dark:border-secondary-500/30'
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
                   }`}
                 >
                   <tab.icon size={18} />
                   {tab.label}
                   {tab.badge > 0 && (
-                    <span className="ml-auto px-2 py-0.5 text-xs bg-rose-500/20 text-rose-500 dark:text-rose-400 rounded-full font-mono">
+                    <span className="ml-auto px-2 py-0.5 text-xs bg-secondary-500/20 text-secondary-600 dark:text-secondary-400 rounded-full font-mono">
                       {tab.badge}
                     </span>
                   )}

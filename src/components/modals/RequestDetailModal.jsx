@@ -18,7 +18,7 @@ const RequestDetailModal = ({ request, onClose }) => {
       >
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
-            <span className="font-mono text-lg text-cyan-600 dark:text-cyan-400">{request.id}</span>
+            <span className="font-mono text-lg text-primary-500 dark:text-secondary-400">{request.id}</span>
             <p className="text-sm text-slate-600 dark:text-slate-400">{request.vendor}</p>
           </div>
           <StatusBadge status={request.status} />
@@ -45,7 +45,7 @@ const RequestDetailModal = ({ request, onClose }) => {
           {bomAnalysis && (
             <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
               <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
-                <Package size={16} className="text-cyan-600 dark:text-cyan-400" />
+                <Package size={16} className="text-primary-500 dark:text-secondary-400" />
                 <h3 className="font-medium text-slate-800 dark:text-slate-200">BOM Impact Analysis</h3>
               </div>
 
@@ -104,7 +104,7 @@ const RequestDetailModal = ({ request, onClose }) => {
                     {bomAnalysis.affectedProducts.map((product, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/20">
                         <td className="px-4 py-2">
-                          <span className="font-mono text-cyan-600 dark:text-cyan-400">{product.productId}</span>
+                          <span className="font-mono text-primary-500 dark:text-secondary-400">{product.productId}</span>
                         </td>
                         <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{product.category}</td>
                         <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">${product.componentCost.toFixed(2)}</td>

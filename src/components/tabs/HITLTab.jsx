@@ -530,7 +530,7 @@ const HITLTab = ({
                   {/* Request Info */}
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <span className="font-mono text-sm font-semibold text-cyan-600 dark:text-cyan-400">{request.id}</span>
+                      <span className="font-mono text-sm font-semibold text-primary-500 dark:text-secondary-400">{request.id}</span>
                       <p className="text-sm text-slate-700 dark:text-slate-300 mt-0.5">{request.vendor}</p>
                     </div>
                     <SLATimer hours={request.slaHours} />
@@ -619,7 +619,7 @@ const HITLTab = ({
 
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <span className="font-mono text-base sm:text-lg font-bold text-cyan-600 dark:text-cyan-400">{selectedRequest.id}</span>
+                    <span className="font-mono text-base sm:text-lg font-bold text-primary-500 dark:text-secondary-400">{selectedRequest.id}</span>
                     <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 truncate">{selectedRequest.vendor}</p>
                   </div>
                   <SLATimer hours={selectedRequest.slaHours} />
@@ -721,7 +721,7 @@ const HITLTab = ({
                 {selectedRequest.bomAnalysis && (
                   <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
                     <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
-                      <Package size={14} className="text-cyan-600 dark:text-cyan-400 sm:w-4 sm:h-4" />
+                      <Package size={14} className="text-primary-500 dark:text-secondary-400 sm:w-4 sm:h-4" />
                       <h4 className="font-medium text-sm sm:text-base text-slate-800 dark:text-slate-200">BOM Impact</h4>
                       <span className="ml-auto text-[10px] sm:text-xs text-slate-500">{selectedRequest.bomAnalysis.summary.totalProductsAffected} products</span>
                     </div>
@@ -788,7 +788,7 @@ const HITLTab = ({
                   <button
                     onClick={() => handleHumanDecision(selectedRequest.id, 'approve')}
                     disabled={isProcessing}
-                    className="px-3 sm:px-4 py-2.5 sm:py-3 bg-cyan-100 dark:bg-cyan-500/20 hover:bg-cyan-200 dark:hover:bg-cyan-500/30 border border-cyan-300 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-400 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 sm:gap-2 transition-all disabled:opacity-50 col-span-2 sm:col-span-1"
+                    className="px-3 sm:px-4 py-2.5 sm:py-3 bg-primary-100 dark:bg-secondary-500/20 hover:bg-primary-200 dark:hover:bg-secondary-500/30 border border-primary-300 dark:border-secondary-500/30 text-primary-700 dark:text-secondary-400 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 sm:gap-2 transition-all disabled:opacity-50 col-span-2 sm:col-span-1"
                   >
                     {isProcessing ? <Loader2 size={14} className="animate-spin sm:w-4 sm:h-4" /> : <RefreshCw size={14} className="sm:w-4 sm:h-4" />}
                     Sync to Epicor
